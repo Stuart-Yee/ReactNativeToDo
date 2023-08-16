@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Button, Modal, StyleSheet, Text, View } from 'react-native';
 import NewItem from './components/NewItem';
+import ItemList from './components/ItemList';
 
 export default function App() {
   const [newText, setNewText] = useState("");
@@ -10,26 +11,21 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Button
-        title='Add Item'
-        onPress={()=>{setShowModal(true)}}
-      />
+      <View style={styles.topBar}>
+        <Button
+          title='Add Item'
+          onPress={() => { setShowModal(true) }}
+        />
+      </View>
       <Modal visible={showModal}>
-        <NewItem 
-          text={newText} 
-          setText={setNewText} 
+        <NewItem
+          text={newText}
+          setText={setNewText}
           setVisible={setShowModal}
           addItem={setItems}
-          />
+        />
       </Modal>
-      <Text>Look, it's Godzilla!</Text>
-      {items.map((item, idx)=>{
-        return(
-          <Text key={idx}>
-            {item}
-          </Text>
-        )
-      })}
+      <ItemList items={items} setItems={setItems} />
       <StatusBar style="auto" />
     </View>
   );
@@ -49,5 +45,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#999",
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  topBar: {
+    // flex: 1,
+    flexDirection: "row"
   }
+
 });

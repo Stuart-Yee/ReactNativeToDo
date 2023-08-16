@@ -12,6 +12,11 @@ const NewItem = ({text, setText, setVisible, addItem}) => {
     }
 
     const submitHandler = () => {
+        if (text.length < 1) {
+            alert("Please enter a task or press Cancel");
+            return;
+        }
+        console.log(`Adding ${text}`);
         addItem((prevItems)=>[...prevItems, text]);
         setText("");
         setVisible(false);
