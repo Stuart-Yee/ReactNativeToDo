@@ -7,7 +7,7 @@ import ItemList from './components/ItemList';
 export default function App() {
   const [newText, setNewText] = useState("");
   const [items, setItems] = useState([]);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <View style={styles.container}>
